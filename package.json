@@ -7,7 +7,7 @@
     "migrate": "dotenv -- node build/Migrator.js up",
     "migrate:rollback": "dotenv -- node build/Migrator.js down",
     "tsc": "tsc -w --outDir build/",
-    "server": "nodemon build/Index.js"
+    "server": "dotenv -- nodemon build/Index.js"
   },
   "author": "",
   "license": "MIT",

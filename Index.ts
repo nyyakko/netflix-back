@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 import * as Cookies from 'cookie-parser';
-import * as Environment from 'dotenv';
 
 import * as AuthController from './Controllers/AuthController.js';
 import * as AuthorizationVerifierMiddleware from './Middleware/AuthorizationVerifierMiddleware.js';
@@ -11,8 +10,6 @@ import * as ExceptionHandlerMiddleware from './Middleware/ExceptionHandlerMiddle
 import * as MovieController from './Controllers/MovieController.js';
 import * as RouteProtectorMiddleware from './Middleware/RouteProtectorMiddleware.js';
 import * as UserController from './Controllers/UserController.js';
-
-Environment.configDotenv();
 
 Database.the();
 
