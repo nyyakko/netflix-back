@@ -1,8 +1,8 @@
 {
   "name": "netflix-back",
-  "version": "1.0.0",
-  "type": "module",
+  "version": "0.0.1",
   "main": "Index.ts",
+  "type": "module",
   "scripts": {
     "tsc": "tsc -w --outDir build/",
     "nodemon": "dotenv -- nodemon build/Index.js",
@@ -12,9 +12,6 @@
     "migrate": "dotenv -- node build/Persistence/Migrator.js up",
     "migrate:rollback": "dotenv -- node build/Persistence/Migrator.js down"
   },
-  "author": "",
-  "license": "MIT",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
