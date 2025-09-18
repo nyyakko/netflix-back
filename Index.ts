@@ -15,8 +15,7 @@ import * as UserController from './Controllers/UserController.js';
 
 Environment.configDotenv();
 
-const database = Database.connect();
-await database.sync();
+Database.the();
 
 await Application.configure();
 
