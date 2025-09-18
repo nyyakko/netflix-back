@@ -17,7 +17,6 @@ export async function get(request: Request, response: Response)
 {
     const page  = parseInt(request.query.page as string) || 1;
     const limit = parseInt(request.query.limit as string) || 10;
-
     response.send(await MovieService.get(page, limit));
 }
 
