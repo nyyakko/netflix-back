@@ -18,7 +18,8 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
     declare synopsis: string;
 
     @Attribute(DataTypes.DOUBLE)
-    declare rating: CreationOptional<number>;
+    @NotNull
+    declare rating: number;
 
     @Attribute(DataTypes.DATE)
     @NotNull

@@ -4,6 +4,7 @@
   "type": "module",
   "main": "Index.ts",
   "scripts": {
+    "migrator": "dotenv -- node build/Migrator.js",
     "migrate": "dotenv -- node build/Migrator.js up",
     "migrate:rollback": "dotenv -- node build/Migrator.js down",
     "tsc": "tsc -w --outDir build/",
