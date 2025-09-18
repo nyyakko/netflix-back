@@ -30,6 +30,10 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
             type: DataTypes.STRING,
             allowNull: false,
         },
+        rating: {
+            type: DataTypes.DOUBLE,
+            allowNull: true
+        },
         releaseDate: {
             type: DataTypes.DATE,
             allowNull: false,
