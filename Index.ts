@@ -13,27 +13,27 @@ import * as UserController from './Controllers/UserController.js';
 
 Database.connect();
 
-const app = express();
+const router = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(Cookies.default())
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
+router.use(Cookies.default())
 
-app.use(AuthorizationVerifierMiddleware.the());
+router.use(AuthorizationVerifierMiddleware.the());
 
-app.post('/api/login', AuthController.login);
-app.post('/api/logout', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.logout);
-app.post('/api/register', AuthController.register);
+router.post('/api/login', AuthController.login);
+router.post('/api/logout', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.logout);
+router.post('/api/register', AuthController.register);
 
-app.get('/api/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);
+router.get('/api/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);
 
-app.post('/api/movies', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.save);
-app.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.deleteById);
-app.get('/api/movies', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.get);
-app.get('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.getById);
+router.post('/api/movies', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.save);
+router.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.deleteById);
+router.get('/api/movies', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.get);
+router.get('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.getById);
 
-app.use(ExceptionHandlerMiddleware.the());
+router.use(ExceptionHandlerMiddleware.the());
 
-app.listen(parseInt(process.env.PORT!), () => {
+router.listen(parseInt(process.env.PORT!), () => {
     console.log(`Listening on port ${process.env.PORT}`);
 });
