@@ -29,6 +29,7 @@ app.use(Cookies.default())
 app.use(AuthorizationVerifierMiddleware.the());
 
 app.post('/api/login', AuthController.login);
+app.post('/api/logout', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.logout);
 app.post('/api/register', AuthController.register);
 
 app.get('/api/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);

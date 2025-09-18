@@ -8,6 +8,12 @@ export async function login(request: Request, response: Response)
     response.send();
 }
 
+export async function logout(request: Request, response: Response)
+{
+    response.clearCookie('authorization');
+    response.send();
+}
+
 export async function register(request: Request, response: Response)
 {
     response.send(await AuthService.register(request.body));
