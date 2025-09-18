@@ -7,10 +7,10 @@ export async function save(request: Request, response: Response)
     response.send(await MovieService.save(request.body));
 }
 
-export async function remove(request: Request, response: Response)
+export async function deleteById(request: Request, response: Response)
 {
     const id = parseInt(request.query.id as string);
-    response.send(await MovieService.remove(id));
+    response.send(await MovieService.removeById(id));
 }
 
 export async function get(request: Request, response: Response)

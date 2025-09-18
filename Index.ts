@@ -35,7 +35,7 @@ app.post('/api/register', AuthController.register);
 app.get('/api/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);
 
 app.post('/api/movies', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.save);
-app.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.remove);
+app.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.deleteById);
 app.get('/api/movies', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.get);
 app.get('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.getById);
 

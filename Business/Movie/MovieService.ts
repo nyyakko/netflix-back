@@ -16,7 +16,7 @@ export async function save({ title, synopsis, rating, releaseDate }: MovieReques
     return MovieResponse.fromMovie(movie!);
 }
 
-export async function remove(id: number)
+export async function removeById(id: number)
 {
     await Movie.destroy({ where: { id } });
 }
