@@ -9,7 +9,6 @@
 
     "dev": "concurrently --kill-others \"npm run tsc\" \"npm run nodemon\"",
 
-    "migrator": "dotenv -- node build/Migrator.js",
     "migrate": "dotenv -- node build/Migrator.js up",
     "migrate:rollback": "dotenv -- node build/Migrator.js down"
   },
