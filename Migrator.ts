@@ -2,7 +2,7 @@ import { Umzug, SequelizeStorage } from 'umzug';
 
 import * as Database from './Infrastructure/Database.js';
 
-const sequelize = Database.the();
+const sequelize = Database.connect();
 
 export const migrator = new Umzug({
     migrations: {

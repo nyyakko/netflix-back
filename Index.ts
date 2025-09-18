@@ -11,7 +11,7 @@ import * as MovieController from './Controllers/MovieController.js';
 import * as RouteProtectorMiddleware from './Middleware/RouteProtectorMiddleware.js';
 import * as UserController from './Controllers/UserController.js';
 
-Database.the();
+Database.connect();
 
 const app = express();
 

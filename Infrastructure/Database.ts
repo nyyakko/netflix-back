@@ -5,7 +5,7 @@ import User from '../Entities/User.js';
 import Movie from '../Entities/Movie.js';
 import Role from '../Entities/Role.js';
 
-export function the()
+export function connect()
 {
     return new Sequelize({
         dialect: PostgresDialect,
