@@ -4,11 +4,14 @@
   "type": "module",
   "main": "Index.ts",
   "scripts": {
+    "tsc": "tsc -w --outDir build/",
+    "nodemon": "dotenv -- nodemon build/Index.js",
+
+    "dev": "concurrently --kill-others \"npm run tsc\" \"npm run nodemon\"",
+
     "migrator": "dotenv -- node build/Migrator.js",
     "migrate": "dotenv -- node build/Migrator.js up",
-    "migrate:rollback": "dotenv -- node build/Migrator.js down",
-    "tsc": "tsc -w --outDir build/",
-    "server": "dotenv -- nodemon build/Index.js"
+    "migrate:rollback": "dotenv -- node build/Migrator.js down"
   },
   "author": "",
   "license": "MIT",
@@ -33,6 +36,7 @@
     "@types/cookie-parser": "^1.4.9",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/sequelize": "^4.28.20",
+    "concurrently": "^9.2.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
