@@ -1,7 +1,7 @@
 import { DataTypes, Model, type CreationOptional, type InferAttributes, type InferCreationAttributes } from '@sequelize/core';
 import { Attribute, PrimaryKey, AutoIncrement, NotNull, Table } from '@sequelize/core/decorators-legacy';
 
-@Table({ tableName: 'movies' })
+@Table({ tableName: 'movies', updatedAt: false })
 export default class Movie extends Model<InferAttributes<Movie>, InferCreationAttributes<Movie>>
 {
     @Attribute(DataTypes.INTEGER)

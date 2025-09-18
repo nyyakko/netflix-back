@@ -3,7 +3,7 @@ import { Attribute, ValidateAttribute, PrimaryKey, AutoIncrement, NotNull, Table
 
 import User from './User.js';
 
-@Table({ tableName: 'roles' })
+@Table({ tableName: 'roles', updatedAt: false })
 export default class Role extends Model<InferAttributes<Role>, InferCreationAttributes<Role>>
 {
     @Attribute(DataTypes.INTEGER)
