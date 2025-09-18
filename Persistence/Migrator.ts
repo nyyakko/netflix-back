@@ -1,6 +1,6 @@
 import { Umzug, SequelizeStorage } from 'umzug';
 
-import * as Database from './Infrastructure/Database.js';
+import * as Database from './Postgres.js';
 
 const sequelize = Database.connect();
 

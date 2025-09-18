@@ -1,9 +1,9 @@
 import { Sequelize } from '@sequelize/core';
 import { PostgresDialect } from '@sequelize/postgres';
 
-import User from '../Entities/User.js';
-import Movie from '../Entities/Movie.js';
-import Role from '../Entities/Role.js';
+import User from './Entities/User.js';
+import Movie from './Entities/Movie.js';
+import Role from './Entities/Role.js';
 
 export function connect()
 {

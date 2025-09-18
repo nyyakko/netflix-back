@@ -1,6 +1,5 @@
-import User from '../../../Entities/User.js';
-
-import RoleResponse from '../../Role/Responses/RoleResponse.js';
+import User from '../../../../Persistence/Entities/User.js';
+import RoleResponse from '../../../Role/Contracts/Responses/RoleResponse.js';
 
 export default class UserResponse
 {

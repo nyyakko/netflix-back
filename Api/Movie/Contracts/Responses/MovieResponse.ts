@@ -1,4 +1,4 @@
-import Movie from '../../../Entities/Movie.js';
+import Movie from '../../../../Persistence/Entities/Movie.js';
 
 export default class MovieResponse
 {

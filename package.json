@@ -9,8 +9,8 @@
 
     "dev": "concurrently --kill-others \"npm run tsc\" \"npm run nodemon\"",
 
-    "migrate": "dotenv -- node build/Migrator.js up",
-    "migrate:rollback": "dotenv -- node build/Migrator.js down"
+    "migrate": "dotenv -- node build/Persistence/Migrator.js up",
+    "migrate:rollback": "dotenv -- node build/Persistence/Migrator.js down"
   },
   "author": "",
   "license": "MIT",

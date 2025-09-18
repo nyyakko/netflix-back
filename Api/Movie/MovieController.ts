@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import * as MovieService from '../Business/Movie/MovieService.js';
+import * as MovieService from './MovieService.js';
 
 export async function save(request: Request, response: Response)
 {

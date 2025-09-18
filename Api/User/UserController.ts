@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import * as UserService from '../Business/User/UserService.js';
+import * as UserService from './UserService.js';
 
 export async function me(request: Request, response: Response)
 {

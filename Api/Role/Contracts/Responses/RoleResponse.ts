@@ -1,4 +1,4 @@
-import type Role from '../../../Entities/Role.js';
+import type Role from "../../../../Persistence/Entities/Role.js";
 
 export default class RoleResponse
 {

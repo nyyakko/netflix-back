@@ -1,6 +1,6 @@
-import UserRequest from "../../Contracts/User/Requests/UserRequest.js";
-import User from "../../Entities/User.js";
-import UserResponse from "../../Contracts/Auth/Responses/UserResponse.js";
+import User from "../../Persistence/Entities/User.js";
+import UserRequest from "./Contracts/Requests/UserRequest.js";
+import UserResponse from "./Contracts/Responses/UserResponse.js";
 
 import UserNotFoundException from "./Exceptions/UserNotFoundException.js";
 

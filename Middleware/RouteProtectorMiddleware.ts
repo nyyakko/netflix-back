@@ -2,7 +2,7 @@ import type { NextFunction, Response, Request } from 'express';
 
 import UnauthorizedException from '../Exceptions/UnauthorizedException.js';
 
-import * as UserService from '../Business/User/UserService.js';
+import * as UserService from '../Api/User/UserService.js';
 
 export function requiredRoles(roles: string[])
 {

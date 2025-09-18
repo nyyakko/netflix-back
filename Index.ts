@@ -3,15 +3,17 @@ import bodyParser from 'body-parser';
 
 import * as Cookies from 'cookie-parser';
 
-import * as AuthController from './Controllers/AuthController.js';
-import * as AuthorizationVerifierMiddleware from './Middleware/AuthorizationVerifierMiddleware.js';
-import * as Database from './Infrastructure/Database.js'
-import * as ExceptionHandlerMiddleware from './Middleware/ExceptionHandlerMiddleware.js';
-import * as MovieController from './Controllers/MovieController.js';
-import * as RouteProtectorMiddleware from './Middleware/RouteProtectorMiddleware.js';
-import * as UserController from './Controllers/UserController.js';
+import * as Postgres from './Persistence/Postgres.js'
 
-Database.connect();
+import * as AuthorizationVerifierMiddleware from './Middleware/AuthorizationVerifierMiddleware.js';
+import * as ExceptionHandlerMiddleware from './Middleware/ExceptionHandlerMiddleware.js';
+import * as RouteProtectorMiddleware from './Middleware/RouteProtectorMiddleware.js';
+
+import * as UserController from './Api/User/UserController.js';
+import * as AuthController from './Api/Auth/AuthController.js';
+import * as MovieController from './Api/Movie/MovieController.js';
+
+Postgres.connect();
 
 const router = express();
 

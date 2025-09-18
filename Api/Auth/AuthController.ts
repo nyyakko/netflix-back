@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 
-import * as AuthService from '../Business/Auth/AuthService.js';
+import * as AuthService from './AuthService.js';
 
 export async function login(request: Request, response: Response)
 {

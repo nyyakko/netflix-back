@@ -1,6 +1,6 @@
-import Movie from '../../Entities/Movie.js';
-import MovieRequest from '../../Contracts/Movie/Requests/MovieRequest.js';
-import MovieResponse from '../../Contracts/Movie/Responses/MovieResponse.js';
+import Movie from '../../Persistence/Entities/Movie.js';
+import MovieRequest from './Contracts/Requests/MovieRequest.js';
+import MovieResponse from './Contracts/Responses/MovieResponse.js';
 
 import MovieAlreadyExistsException from './Exceptions/MovieAlreadyExistsException.js';
 import MovieNotFoundException from './Exceptions/MovieNotFoundException.js';
