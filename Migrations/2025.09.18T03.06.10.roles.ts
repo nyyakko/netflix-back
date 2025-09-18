@@ -17,6 +17,11 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
             allowNull: false,
         },
     });
+
+    await sequelize.getQueryInterface().bulkInsert('roles', [
+        { name: 'ADMIN' },
+        { name: 'USER' },
+    ]);
 }
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
