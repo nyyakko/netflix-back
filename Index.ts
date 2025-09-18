@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import * as Cookies from 'cookie-parser';
 import * as Environment from 'dotenv';
 
-import * as Application from './Infrastructure/Application.js';
 import * as AuthController from './Controllers/AuthController.js';
 import * as AuthorizationVerifierMiddleware from './Middleware/AuthorizationVerifierMiddleware.js';
 import * as Database from './Infrastructure/Database.js'
@@ -15,10 +14,7 @@ import * as UserController from './Controllers/UserController.js';
 
 Environment.configDotenv();
 
-const database = Database.connect();
-await database.sync();
-
-await Application.configure();
+Database.the();
 
 const app = express();
 
