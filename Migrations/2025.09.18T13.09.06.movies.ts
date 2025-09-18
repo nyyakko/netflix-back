@@ -5,7 +5,7 @@ import type Sequelize from '@sequelize/core';
 
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().changeColumn('movies', 'rating', {
+    await sequelize.queryInterface.changeColumn('movies', 'rating', {
         type: DataTypes.DOUBLE,
         allowNull: false
     });
@@ -13,7 +13,7 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().changeColumn('movies', 'rating', {
+    await sequelize.queryInterface.changeColumn('movies', 'rating', {
         type: DataTypes.DOUBLE,
         allowNull: true
     });

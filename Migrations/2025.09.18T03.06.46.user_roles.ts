@@ -8,7 +8,7 @@ import type Role from '../Entities/Role.js';
 
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().createTable('user_roles', {
+    await sequelize.queryInterface.createTable('user_roles', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -38,10 +38,10 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
     const user = await sequelize.query('SELECT id FROM users WHERE name = :name', { replacements: { name: process.env.ADMIN_USERNAME! }, type: QueryTypes.SELECT }) as User[];
     const roles = await sequelize.query('SELECT id FROM roles', { type: QueryTypes.SELECT }) as Role[];
 
-    await sequelize.getQueryInterface().bulkInsert('user_roles', roles.map(role => { return { userId: user[0]!.id, roleId: role.id } }));
+    await sequelize.queryInterface.bulkInsert('user_roles', roles.map(role => { return { userId: user[0]!.id, roleId: role.id } }));
 }
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().dropTable('user_roles');
+    await sequelize.queryInterface.dropTable('user_roles');
 }

@@ -5,7 +5,7 @@ import type Sequelize from '@sequelize/core';
 
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().createTable('roles', {
+    await sequelize.queryInterface.createTable('roles', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -28,7 +28,7 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
         },
     });
 
-    await sequelize.getQueryInterface().bulkInsert('roles', [
+    await sequelize.queryInterface.bulkInsert('roles', [
         { name: 'ADMIN' },
         { name: 'USER' },
     ]);
@@ -36,5 +36,5 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().dropTable('roles');
+    await sequelize.queryInterface.dropTable('roles');
 }

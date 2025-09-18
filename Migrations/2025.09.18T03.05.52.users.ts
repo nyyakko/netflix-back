@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().createTable('users', {
+    await sequelize.queryInterface.createTable('users', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -37,7 +37,7 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
         }
     });
 
-    await sequelize.getQueryInterface().bulkInsert('users', [
+    await sequelize.queryInterface.bulkInsert('users', [
         {
             name: process.env.ADMIN_USERNAME!,
             email: process.env.ADMIN_EMAIL!,
@@ -48,5 +48,5 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.getQueryInterface().dropTable('users');
+    await sequelize.queryInterface.dropTable('users');
 }
