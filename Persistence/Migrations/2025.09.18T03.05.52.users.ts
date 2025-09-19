@@ -10,7 +10,7 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -33,7 +33,7 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
     });
 }
 

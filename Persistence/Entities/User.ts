@@ -25,6 +25,7 @@ export default class User extends Model<InferAttributes<User>, InferCreationAttr
 
     @BelongsToMany(() => Role, { through: 'user_roles' })
     declare roles?: NonAttribute<Role[]>;
+
     declare setRoles: BelongsToManySetAssociationsMixin<Role, Role['id']>;
     declare getRoles: BelongsToManyGetAssociationsMixin<Role>;
 }
