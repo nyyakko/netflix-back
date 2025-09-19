@@ -6,9 +6,7 @@
   "scripts": {
     "tsc": "tsc -w --outDir build/",
     "nodemon": "dotenv -- nodemon build/Index.js",
-
     "dev": "concurrently --kill-others \"npm run tsc\" \"npm run nodemon\"",
-
     "migrate": "dotenv -- node build/Persistence/Migrator.js up",
     "migrate:rollback": "dotenv -- node build/Persistence/Migrator.js down"
   },
@@ -16,6 +14,7 @@
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "dotenv-cli": "^10.0.0",
     "express": "^5.1.0",
@@ -30,6 +29,7 @@
     "@sequelize/core": "^7.0.0-alpha.46",
     "@sequelize/postgres": "^7.0.0-alpha.46",
     "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/sequelize": "^4.28.20",
     "concurrently": "^9.2.1",

@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import * as Cookies from 'cookie-parser';
@@ -17,6 +18,7 @@ Postgres.connect();
 
 const router = express();
 
+router.use(cors({ origin: [process.env.FRONTEND_ORIGIN!] }))
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(Cookies.default())
