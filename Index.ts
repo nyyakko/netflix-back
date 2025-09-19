@@ -21,7 +21,7 @@ const router = express();
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(Cookies.default());
-router.use(cors({ origin: [process.env.CORS_ORIGIN!] }));
+router.use(cors({ credentials: true, origin: [process.env.CORS_ORIGIN!] }));
 
 router.use(AuthorizationVerifierMiddleware.the());
 
