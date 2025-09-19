@@ -7,8 +7,9 @@
     "tsc": "tsc -w --outDir build/",
     "nodemon": "dotenv -- nodemon build/Index.js",
     "dev": "concurrently --kill-others \"npm run tsc\" \"npm run nodemon\"",
-    "migrate": "dotenv -- node build/Persistence/Migrator.js up",
-    "migrate:rollback": "dotenv -- node build/Persistence/Migrator.js down"
+    "migrator": "dotenv -- node build/Persistence/Migrator.js",
+    "migrator:up": "dotenv -- node build/Persistence/Migrator.js up",
+    "migrator:down": "dotenv -- node build/Persistence/Migrator.js down"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
