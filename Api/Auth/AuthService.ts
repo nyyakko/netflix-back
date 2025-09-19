@@ -25,7 +25,7 @@ export async function login({ email, password }: LoginRequest): Promise<string>
     return jwt.sign({ name: user.name, email: user.email }, process.env.JWT_SECRET!, { expiresIn: parseInt(process.env.JWT_EXPIRES_IN!) });
 }
 
-export async function register({ name, email, password }: RegisterRequest)
+export async function register({ name, email, password }: RegisterRequest): Promise<UserResponse>
 {
     if (await User.findOne({ where: { name, email }})) {
         throw new UserAlreadyExistsException();
@@ -36,5 +36,5 @@ export async function register({ name, email, password }: RegisterRequest)
     const user = await User.create({ name, email, password: await bcrypt.hash(password, 10)});
     user.setRoles([role!.id]);
 
-    return UserResponse.fromUser(user);
+    return UserResponse.fromUser((await User.findByPk(user.id))!);
 }
