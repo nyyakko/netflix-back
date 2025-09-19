@@ -6,7 +6,7 @@ const sequelize = Database.connect();
 
 export const migrator = new Umzug({
     migrations: {
-        glob: 'Migrations/*.ts'
+        glob: 'Persistence/Migrations/*.ts'
     },
     context: sequelize,
     storage: new SequelizeStorage({ sequelize, }),
