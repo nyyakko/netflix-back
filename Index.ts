@@ -25,11 +25,11 @@ router.use(Cookies.default())
 
 router.use(AuthorizationVerifierMiddleware.the());
 
-router.post('/api/login', AuthController.login);
-router.post('/api/logout', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.logout);
-router.post('/api/register', AuthController.register);
+router.post('/api/auth/login', AuthController.login);
+router.post('/api/auth/logout', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.logout);
+router.post('/api/auth/register', AuthController.register);
 
-router.get('/api/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);
+router.get('/api/users/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);
 
 router.post('/api/movies', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.save);
 router.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.deleteById);
