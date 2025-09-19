@@ -18,10 +18,10 @@ Postgres.connect();
 
 const router = express();
 
-router.use(cors({ origin: [process.env.FRONTEND_ORIGIN!] }))
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
-router.use(Cookies.default())
+router.use(Cookies.default());
+router.use(cors({ origin: [process.env.CORS_ORIGIN!] }));
 
 router.use(AuthorizationVerifierMiddleware.the());
 
