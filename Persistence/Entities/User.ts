@@ -11,6 +11,12 @@ export default class User extends Model<InferAttributes<User>, InferCreationAttr
     @AutoIncrement
     declare id: CreationOptional<number>;
 
+    @Attribute(DataTypes.DATE)
+    declare createdAt: CreationOptional<Date>;
+
+    @Attribute(DataTypes.DATE)
+    declare updatedAt: CreationOptional<Date>;
+
     @Attribute(DataTypes.STRING)
     @NotNull
     declare name: string;

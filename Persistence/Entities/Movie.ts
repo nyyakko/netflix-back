@@ -9,6 +9,12 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
     @AutoIncrement
     declare id: CreationOptional<number>;
 
+    @Attribute(DataTypes.DATE)
+    declare createdAt: CreationOptional<Date>;
+
+    @Attribute(DataTypes.DATE)
+    declare updatedAt: CreationOptional<Date>;
+
     @Attribute(DataTypes.STRING)
     @NotNull
     declare title: string;

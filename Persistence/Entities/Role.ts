@@ -11,6 +11,12 @@ export default class Role extends Model<InferAttributes<Role>, InferCreationAttr
     @AutoIncrement
     declare id: CreationOptional<number>;
 
+    @Attribute(DataTypes.DATE)
+    declare createdAt: CreationOptional<Date>;
+
+    @Attribute(DataTypes.DATE)
+    declare updatedAt: CreationOptional<Date>;
+
     @ValidateAttribute({ isIn: [['USER', 'ADMIN']] })
     @Attribute(DataTypes.STRING)
     @NotNull
