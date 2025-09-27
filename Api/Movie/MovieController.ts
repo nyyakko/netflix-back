@@ -1,5 +1,7 @@
 import type { Request, Response } from 'express';
 
+import UnauthorizedException from '../../Exceptions/UnauthorizedException.js';
+
 import * as MovieService from './MovieService.js';
 
 export async function save(request: Request, response: Response)
@@ -17,6 +19,11 @@ export async function get(request: Request, response: Response)
 {
     const page  = parseInt(request.query.page as string) || 1;
     const limit = parseInt(request.query.limit as string) || 10;
+
+    if ((request.query.page || request.query.limit) && !request.user) {
+        throw new UnauthorizedException();
+    }
+
     response.send(await MovieService.get(page, limit));
 }
 

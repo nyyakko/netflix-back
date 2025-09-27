@@ -33,8 +33,8 @@ router.get('/api/users/me', RouteProtectorMiddleware.requiredRoles(['USER']), Us
 
 router.post('/api/movies', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.save);
 router.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.deleteById);
-router.get('/api/movies', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.get);
-router.get('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['USER']), MovieController.getById);
+router.get('/api/movies', MovieController.get);
+router.get('/api/movies/:id', MovieController.getById);
 
 router.use(ExceptionHandlerMiddleware.the());
 
