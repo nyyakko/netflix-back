@@ -7,12 +7,13 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
     await sequelize.queryInterface.bulkInsert('roles', [
         { name: 'ADMIN' },
         { name: 'USER' },
+        { name: 'GUEST' },
     ]);
 }
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
     await sequelize.queryInterface.bulkDelete('roles', {
-        where: [{ name: 'ADMIN' }, { name: 'USER' }]
+        where: [{ name: 'ADMIN' }, { name: 'USER' }, { name: 'USER' }]
     });
 }
