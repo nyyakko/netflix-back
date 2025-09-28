@@ -27,7 +27,7 @@ router.use(AuthorizationVerifierMiddleware.the());
 
 router.post('/api/auth/login', AuthController.login);
 router.post('/api/auth/logout', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.logout);
-router.post('/api/auth/register', AuthController.register);
+router.post('/api/auth/signup', AuthController.signup);
 
 router.get('/api/users/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);
 

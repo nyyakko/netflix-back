@@ -14,7 +14,7 @@ export async function logout(request: Request, response: Response)
     response.send();
 }
 
-export async function register(request: Request, response: Response)
+export async function signup(request: Request, response: Response)
 {
-    response.send(await AuthService.register(request.body));
+    response.send(await AuthService.signup(request.body));
 }
