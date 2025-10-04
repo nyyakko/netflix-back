@@ -5,7 +5,7 @@ export default class RoleResponse
     id!: number;
     name!: string;
 
-    static fromRole(role: Role): RoleResponse
+    static fromEntity(role: Role): RoleResponse
     {
         let response = new RoleResponse();
 

@@ -6,7 +6,7 @@ export default class GenreResponse
     name!: string;
     description!: string;
 
-    static fromGenre(genre: Genre): GenreResponse
+    static fromEntity(genre: Genre): GenreResponse
     {
         let response = new GenreResponse();
 

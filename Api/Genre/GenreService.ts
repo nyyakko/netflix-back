@@ -13,7 +13,7 @@ export async function save({ name, description }: GenreRequest): Promise<GenreRe
 
     const genre = await Genre.create({ name, description });
 
-    return GenreResponse.fromGenre(genre!);
+    return GenreResponse.fromEntity(genre!);
 }
 
 export async function removeById(id: number)
@@ -29,7 +29,7 @@ export async function get(page: number, limit: number): Promise<GenreResponse[]>
         order: [['createdAt', 'DESC']]
     });
 
-    return rows.map(GenreResponse.fromGenre);
+    return rows.map(GenreResponse.fromEntity);
 }
 
 export async function getById(id: number): Promise<GenreResponse>
@@ -40,5 +40,5 @@ export async function getById(id: number): Promise<GenreResponse>
         throw new GenreNotFoundException();
     }
 
-    return GenreResponse.fromGenre(genre!);
+    return GenreResponse.fromEntity(genre!);
 }

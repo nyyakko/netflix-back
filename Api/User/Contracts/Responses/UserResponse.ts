@@ -8,7 +8,7 @@ export default class UserResponse
     email!: string;
     roles!: RoleResponse[];
 
-    static async fromUser(user: User): Promise<UserResponse>
+    static async fromEntity(user: User): Promise<UserResponse>
     {
         let response = new UserResponse();
 
@@ -17,7 +17,7 @@ export default class UserResponse
         response.email = user.get('email');
 
         const roles = await user.getRoles();
-        response.roles = roles.map(RoleResponse.fromRole);
+        response.roles = roles.map(RoleResponse.fromEntity);
 
         return response;
     }

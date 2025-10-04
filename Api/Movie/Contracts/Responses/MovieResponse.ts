@@ -7,7 +7,7 @@ export default class MovieResponse
     synopsis!: string;
     rating!: number;
 
-    static fromMovie(movie: Movie): MovieResponse
+    static fromEntity(movie: Movie): MovieResponse
     {
         let response = new MovieResponse();
 

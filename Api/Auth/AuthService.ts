@@ -36,5 +36,5 @@ export async function signUp({ name, email, password }: RegisterRequest): Promis
     const user = await User.create({ name, email, password: await bcrypt.hash(password, 10)});
     user.setRoles([role!.id]);
 
-    return UserResponse.fromUser((await User.findByPk(user.id))!);
+    return UserResponse.fromEntity((await User.findByPk(user.id))!);
 }

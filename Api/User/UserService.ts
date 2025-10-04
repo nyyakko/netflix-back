@@ -12,5 +12,5 @@ export async function me({ name, email }: UserRequest): Promise<UserResponse>
         throw new UserNotFoundException();
     }
 
-    return UserResponse.fromUser(user);
+    return UserResponse.fromEntity(user);
 }
