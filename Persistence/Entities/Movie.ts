@@ -34,7 +34,7 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
     declare releaseDate: Date;
 
     @BelongsToMany(() => Genre, { through: 'movie_genres' })
-    declare categories?: NonAttribute<Genre[]>;
+    declare genres?: NonAttribute<Genre[]>;
 
     declare setGenres: BelongsToManySetAssociationsMixin<Genre, Genre['id']>;
     declare getGenres: BelongsToManyGetAssociationsMixin<Genre>;
