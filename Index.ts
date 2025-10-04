@@ -26,9 +26,9 @@ router.use(cors({ credentials: true, origin: [process.env.CORS_ORIGIN!] }));
 
 router.use(AuthorizationVerifierMiddleware.the());
 
-router.post('/api/auth/login', AuthController.login);
-router.post('/api/auth/logout', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.logout);
-router.post('/api/auth/signup', AuthController.signup);
+router.post('/api/auth/signin', AuthController.signIn);
+router.post('/api/auth/signoff', RouteProtectorMiddleware.requiredRoles(['USER']), AuthController.signOff);
+router.post('/api/auth/signup', AuthController.signUp);
 
 router.get('/api/users/me', RouteProtectorMiddleware.requiredRoles(['USER']), UserController.me);
 
