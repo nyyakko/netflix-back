@@ -2,17 +2,17 @@ import type { Request, Response } from 'express';
 
 import UnauthorizedException from '../../Exceptions/UnauthorizedException.js';
 
-import * as CategoryService from './CategoryService.js';
+import * as GenreService from './GenreService.js';
 
 export async function save(request: Request, response: Response)
 {
-    response.send(await CategoryService.save(request.body));
+    response.send(await GenreService.save(request.body));
 }
 
 export async function deleteById(request: Request, response: Response)
 {
     const id = parseInt(request.query.id as string);
-    response.send(await CategoryService.removeById(id));
+    response.send(await GenreService.removeById(id));
 }
 
 export async function get(request: Request, response: Response)
@@ -24,10 +24,10 @@ export async function get(request: Request, response: Response)
         throw new UnauthorizedException();
     }
 
-    response.send(await CategoryService.get(page, limit));
+    response.send(await GenreService.get(page, limit));
 }
 
 export async function getById(request: Request, response: Response)
 {
-    response.send(await CategoryService.getById(parseInt(request.params.id!)));
+    response.send(await GenreService.getById(parseInt(request.params.id!)));
 }

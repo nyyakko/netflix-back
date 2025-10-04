@@ -3,8 +3,8 @@ import { Attribute, PrimaryKey, AutoIncrement, NotNull, Table, BelongsToMany } f
 
 import Movie from './Movie.js';
 
-@Table({ tableName: 'categories' })
-export default class Category extends Model<InferAttributes<Category>, InferCreationAttributes<Category>>
+@Table({ tableName: 'genres' })
+export default class Genre extends Model<InferAttributes<Genre>, InferCreationAttributes<Genre>>
 {
     @Attribute(DataTypes.INTEGER)
     @PrimaryKey
@@ -25,6 +25,6 @@ export default class Category extends Model<InferAttributes<Category>, InferCrea
     @NotNull
     declare description: string;
 
-    @BelongsToMany(() => Movie, { through: 'movie_categories' })
-    declare movies?: NonAttribute<Category[]>;
+    @BelongsToMany(() => Movie, { through: 'movie_genres' })
+    declare movies?: NonAttribute<Genre[]>;
 }

@@ -13,7 +13,7 @@ import * as RouteProtectorMiddleware from './Middleware/RouteProtectorMiddleware
 import * as UserController from './Api/User/UserController.js';
 import * as AuthController from './Api/Auth/AuthController.js';
 import * as MovieController from './Api/Movie/MovieController.js';
-import * as CategoryController from './Api/Category/CategoryController.js';
+import * as GenreController from './Api/Genre/GenreController.js';
 
 Postgres.connect();
 
@@ -37,10 +37,10 @@ router.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN'
 router.get('/api/movies', MovieController.get);
 router.get('/api/movies/:id', MovieController.getById);
 
-router.post('/api/categories', RouteProtectorMiddleware.requiredRoles(['ADMIN']), CategoryController.save);
-router.delete('/api/categories/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), CategoryController.deleteById);
-router.get('/api/categories', CategoryController.get);
-router.get('/api/categories/:id', CategoryController.getById);
+router.post('/api/genres', RouteProtectorMiddleware.requiredRoles(['ADMIN']), GenreController.save);
+router.delete('/api/genres/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), GenreController.deleteById);
+router.get('/api/genres', GenreController.get);
+router.get('/api/genres/:id', GenreController.getById);
 
 router.use(ExceptionHandlerMiddleware.the());
 

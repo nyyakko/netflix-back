@@ -5,7 +5,7 @@ import type Sequelize from '@sequelize/core';
 
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.queryInterface.createTable('movie_categories', {
+    await sequelize.queryInterface.createTable('movie_genres', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -24,16 +24,16 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
         },
         movieId: {
             type: DataTypes.INTEGER,
-            references: { table: 'movies', key: 'id'}
+            references: { table: 'movies', key: 'id' }
         },
-        categoryId: {
+        genreId: {
             type: DataTypes.INTEGER,
-            references: { table: 'categories', key: 'id'}
+            references: { table: 'genres', key: 'id' }
         }
     });
 }
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.queryInterface.dropTable('movie_categories');
+    await sequelize.queryInterface.dropTable('movie_genres');
 }

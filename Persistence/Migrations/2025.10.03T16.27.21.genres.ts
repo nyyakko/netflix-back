@@ -5,7 +5,7 @@ import type Sequelize from '@sequelize/core';
 
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.queryInterface.createTable('categories', {
+    await sequelize.queryInterface.createTable('genres', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -35,5 +35,5 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.queryInterface.dropTable('categories');
+    await sequelize.queryInterface.dropTable('genres');
 }
