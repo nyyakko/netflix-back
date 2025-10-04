@@ -13,6 +13,7 @@ import * as RouteProtectorMiddleware from './Middleware/RouteProtectorMiddleware
 import * as UserController from './Api/User/UserController.js';
 import * as AuthController from './Api/Auth/AuthController.js';
 import * as MovieController from './Api/Movie/MovieController.js';
+import * as CategoryController from './Api/Category/CategoryController.js';
 
 Postgres.connect();
 
@@ -35,6 +36,11 @@ router.post('/api/movies', RouteProtectorMiddleware.requiredRoles(['ADMIN']), Mo
 router.delete('/api/movies/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), MovieController.deleteById);
 router.get('/api/movies', MovieController.get);
 router.get('/api/movies/:id', MovieController.getById);
+
+router.post('/api/categories', RouteProtectorMiddleware.requiredRoles(['ADMIN']), CategoryController.save);
+router.delete('/api/categories/:id', RouteProtectorMiddleware.requiredRoles(['ADMIN']), CategoryController.deleteById);
+router.get('/api/categories', CategoryController.get);
+router.get('/api/categories/:id', CategoryController.getById);
 
 router.use(ExceptionHandlerMiddleware.the());
 

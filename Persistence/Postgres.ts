@@ -4,6 +4,7 @@ import { PostgresDialect } from '@sequelize/postgres';
 import User from './Entities/User.js';
 import Movie from './Entities/Movie.js';
 import Role from './Entities/Role.js';
+import Category from './Entities/Category.js';
 
 export function connect()
 {
@@ -15,6 +16,6 @@ export function connect()
         host: process.env.POSTGRES_HOST,
         port: parseInt(process.env.POSTGRES_PORT!),
         clientMinMessages: 'notice',
-        models: [Role, User, Movie]
+        models: [Role, User, Movie, Category]
     });
 }

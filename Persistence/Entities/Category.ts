@@ -1,10 +1,10 @@
 import { DataTypes, Model, type NonAttribute, type CreationOptional, type InferAttributes, type InferCreationAttributes } from '@sequelize/core';
 import { Attribute, PrimaryKey, AutoIncrement, NotNull, Table, BelongsToMany } from '@sequelize/core/decorators-legacy';
 
-import Category from './Category.js';
+import Movie from './Movie.js';
 
-@Table({ tableName: 'movies' })
-export default class Movie extends Model<InferAttributes<Movie>, InferCreationAttributes<Movie>>
+@Table({ tableName: 'categories' })
+export default class Category extends Model<InferAttributes<Category>, InferCreationAttributes<Category>>
 {
     @Attribute(DataTypes.INTEGER)
     @PrimaryKey
@@ -19,20 +19,12 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
 
     @Attribute(DataTypes.STRING)
     @NotNull
-    declare title: string;
+    declare name: string;
 
     @Attribute(DataTypes.STRING)
     @NotNull
-    declare synopsis: string;
+    declare description: string;
 
-    @Attribute(DataTypes.DOUBLE)
-    @NotNull
-    declare rating: number;
-
-    @Attribute(DataTypes.DATE)
-    @NotNull
-    declare releaseDate: Date;
-
-    @BelongsToMany(() => Category, { through: 'movie_categories' })
-    declare categories?: NonAttribute<Category[]>;
+    @BelongsToMany(() => Movie, { through: 'movie_categories' })
+    declare movies?: NonAttribute<Category[]>;
 }
