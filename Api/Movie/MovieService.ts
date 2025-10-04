@@ -5,13 +5,14 @@ import MovieResponse from './Contracts/Responses/MovieResponse.js';
 import MovieAlreadyExistsException from './Exceptions/MovieAlreadyExistsException.js';
 import MovieNotFoundException from './Exceptions/MovieNotFoundException.js';
 
-export async function save({ title, synopsis, rating, releaseDate }: MovieRequest): Promise<MovieResponse>
+export async function save({ title, synopsis, rating, genres, releaseDate }: MovieRequest): Promise<MovieResponse>
 {
     if (await Movie.findOne({ where: { title }})) {
         throw new MovieAlreadyExistsException();
     }
 
     const movie = await Movie.create({ title, synopsis, rating, releaseDate });
+    movie.setGenres(genres);
 
     return MovieResponse.fromEntity(movie!);
 }
@@ -29,7 +30,7 @@ export async function get(page: number, limit: number): Promise<MovieResponse[]>
         order: [['createdAt', 'DESC']]
     });
 
-    return rows.map(MovieResponse.fromEntity);
+    return await Promise.all(rows.map(MovieResponse.fromEntity));
 }
 
 export async function getById(id: number): Promise<MovieResponse>

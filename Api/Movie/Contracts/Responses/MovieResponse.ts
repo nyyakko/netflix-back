@@ -1,4 +1,5 @@
 import Movie from '../../../../Persistence/Entities/Movie.js';
+import GenreResponse from '../../../Genre/Contracts/Responses/GenreResponse.js';
 
 export default class MovieResponse
 {
@@ -6,8 +7,9 @@ export default class MovieResponse
     title!: string;
     synopsis!: string;
     rating!: number;
+    genres!: GenreResponse[];
 
-    static fromEntity(movie: Movie): MovieResponse
+    static async fromEntity(movie: Movie): Promise<MovieResponse>
     {
         let response = new MovieResponse();
 
@@ -15,6 +17,9 @@ export default class MovieResponse
         response.title = movie.get('title');
         response.synopsis = movie.get('synopsis');
         response.rating = movie.get('rating');
+
+        const genres = await movie.getGenres();
+        response.genres = genres.map(GenreResponse.fromEntity);
 
         return response;
     }

@@ -1,4 +1,4 @@
-import { DataTypes, Model, type NonAttribute, type CreationOptional, type InferAttributes, type InferCreationAttributes } from '@sequelize/core';
+import { DataTypes, Model, type CreationOptional, type NonAttribute, type InferAttributes, type InferCreationAttributes, type BelongsToManySetAssociationsMixin, type BelongsToManyGetAssociationsMixin } from '@sequelize/core';
 import { Attribute, PrimaryKey, AutoIncrement, NotNull, Table, BelongsToMany } from '@sequelize/core/decorators-legacy';
 
 import Genre from './Genre.js';
@@ -35,4 +35,7 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
 
     @BelongsToMany(() => Genre, { through: 'movie_genres' })
     declare categories?: NonAttribute<Genre[]>;
+
+    declare setGenres: BelongsToManySetAssociationsMixin<Genre, Genre['id']>;
+    declare getGenres: BelongsToManyGetAssociationsMixin<Genre>;
 }
