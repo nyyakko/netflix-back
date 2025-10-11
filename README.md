@@ -8,7 +8,7 @@ Projeto CRUD realizado no curso técnico de informática do IFPR.
 
 Para executar o projeto em um docker container, simplesmente rode o seguinte comando:
 
-```
+```bash
 docker compose up
 ```
 

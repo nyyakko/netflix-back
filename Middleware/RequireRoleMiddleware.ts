@@ -4,7 +4,7 @@ import UnauthorizedException from '../Exceptions/UnauthorizedException.js';
 
 import * as UserService from '../Api/User/UserService.js';
 
-export function requiredRoles(roles: string[])
+export function requireRoles(roles: string[])
 {
     return async (request: Request, _response: Response, next: NextFunction) => {
         if (!request.user) {
@@ -19,4 +19,9 @@ export function requiredRoles(roles: string[])
 
         return next();
     };
+}
+
+export function requireAdmin()
+{
+    return requireRoles(['ADMIN']);
 }
