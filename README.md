@@ -19,25 +19,26 @@ docker compose up
 Antes de mais nada, crie um arquivo `.env` na raiz do projeto com a seguinte estrutura:
 
 ```sh
-PORT=3000
+PORT=
 
-CORS_ORIGIN=http://localhost:5173
+CORS_ORIGIN=
 
-POSTGRES_DB=netflix
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_HOST=
+POSTGRES_PORT=
 
-JWT_SECRET=stinger-uncapped-negligent-dish-trimness-raft
-JWT_EXPIRES_IN=3600
+JWT_SECRET=
+# Tempo de expiração em segundos
+JWT_EXPIRES_IN=
 
-ADMIN_USERNAME=admin
-ADMIN_EMAIL=admin@localhost
-ADMIN_PASSWORD=admin
+ADMIN_USERNAME=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
 ```
 
-lembre-se de substituir os valores entre colchetes por algo válido.
+lembre-se de atribuir valores válidos em cada campo.
 
 ### Configurando o banco
 
