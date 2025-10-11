@@ -4,8 +4,6 @@ import bodyParser from 'body-parser';
 
 import * as Cookies from 'cookie-parser';
 
-import * as Postgres from './Persistence/Postgres.js'
-
 import * as AuthorizationVerifierMiddleware from './Middleware/AuthorizationVerifierMiddleware.js';
 import * as ExceptionHandlerMiddleware from './Middleware/ExceptionHandlerMiddleware.js';
 import * as RouteProtectorMiddleware from './Middleware/RouteProtectorMiddleware.js';
@@ -15,7 +13,7 @@ import * as AuthController from './Api/Auth/AuthController.js';
 import * as MovieController from './Api/Movie/MovieController.js';
 import * as GenreController from './Api/Genre/GenreController.js';
 
-Postgres.connect();
+import './Persistence/Sequelize.js'
 
 const router = express();
 

@@ -1,8 +1,6 @@
 import { Umzug, SequelizeStorage } from 'umzug';
 
-import * as Database from './Postgres.js';
-
-const sequelize = Database.connect();
+import sequelize from '../Persistence/Sequelize.js'
 
 export const migrator = new Umzug({
     migrations: {
