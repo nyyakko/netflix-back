@@ -4,9 +4,9 @@
   "main": "Index.ts",
   "type": "module",
   "scripts": {
-    "tsc": "tsc -w --outDir build/",
+    "tsc": "tsc --outDir build/",
     "nodemon": "dotenv -- nodemon build/Index.js",
-    "dev": "concurrently --kill-others \"npm run tsc\" \"npm run nodemon\"",
+    "dev": "concurrently --kill-others \"npm run tsc -- -w\" \"npm run nodemon\"",
     "migrator": "dotenv -- node build/Persistence/Migrator.js",
     "migrator:up": "dotenv -- node build/Persistence/Migrator.js up",
     "migrator:down": "dotenv -- node build/Persistence/Migrator.js down"
