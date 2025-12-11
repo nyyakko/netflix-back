@@ -36,8 +36,9 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
             return sequelize.query('SELECT id FROM genres WHERE name = :name', { replacements: { name: genre }, type: QueryTypes.SELECT }) as Promise<Genre[]>
         }));
 
-        // const genres = ;
-        // await sequelize.queryInterface.bulkInsert('movie_genres', genres.map(genre => { return { movieId: movies.flat()[1]!.id, genreId: genre.id } }));
+        await sequelize.queryInterface.bulkInsert('movie_genres', genres.flat().map(genre => {
+            return { movieId: movies.flat()[1]!.id, genreId: genre.id }
+        }));
     }
 }
 
