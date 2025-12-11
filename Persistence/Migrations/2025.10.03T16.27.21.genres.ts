@@ -25,11 +25,7 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        }
     });
 }
 

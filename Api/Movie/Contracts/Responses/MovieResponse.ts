@@ -5,6 +5,7 @@ export default class MovieResponse
 {
     id!: number;
     title!: string;
+    releaseDate!: Date;
     synopsis!: string;
     rating!: number;
     genres!: GenreResponse[];
@@ -20,6 +21,8 @@ export default class MovieResponse
 
         const genres = await movie.getGenres();
         response.genres = genres.map(GenreResponse.fromEntity);
+
+        response.releaseDate = movie.get('releaseDate');
 
         return response;
     }

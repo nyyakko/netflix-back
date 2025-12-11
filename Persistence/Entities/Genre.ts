@@ -21,10 +21,6 @@ export default class Genre extends Model<InferAttributes<Genre>, InferCreationAt
     @NotNull
     declare name: string;
 
-    @Attribute(DataTypes.STRING)
-    @NotNull
-    declare description: string;
-
     @BelongsToMany(() => Movie, { through: 'movie_genres' })
     declare movies?: NonAttribute<Genre[]>;
 }

@@ -4,7 +4,6 @@ export default class GenreResponse
 {
     id!: number;
     name!: string;
-    description!: string;
 
     static fromEntity(genre: Genre): GenreResponse
     {
@@ -12,7 +11,6 @@ export default class GenreResponse
 
         response.id = genre.get('id');
         response.name = genre.get('name');
-        response.description = genre.get('description');
 
         return response;
     }

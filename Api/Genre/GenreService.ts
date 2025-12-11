@@ -5,13 +5,13 @@ import GenreResponse from './Contracts/Responses/GenreResponse.js';
 import GenreAlreadyExistsException from './Exceptions/GenreAlreadyExistsException.js';
 import GenreNotFoundException from './Exceptions/GenreNotFoundException.js';
 
-export async function save({ name, description }: GenreRequest): Promise<GenreResponse>
+export async function save({ name }: GenreRequest): Promise<GenreResponse>
 {
     if (await Genre.findOne({ where: { name }})) {
         throw new GenreAlreadyExistsException();
     }
 
-    const genre = await Genre.create({ name, description });
+    const genre = await Genre.create({ name });
 
     return GenreResponse.fromEntity(genre!);
 }
