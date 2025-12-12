@@ -28,8 +28,10 @@ services:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
 
-      JWT_SECRET: stinger-uncapped-negligent-dish-trimness-raft
-      JWT_EXPIRES_IN: 3600
+      MOVIEDB_API_KEY: ${MOVIEDB_API_KEY}
+
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: 86400000
 
       ADMIN_USERNAME: admin
       ADMIN_EMAIL: admin@localhost

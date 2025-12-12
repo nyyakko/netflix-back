@@ -1,8 +1,12 @@
 export default class MovieRequest
 {
     title!: string;
+    releaseDate!: Date;
     synopsis!: string;
     rating!: number;
+    popularity!: number;
     genres!: number[];
-    releaseDate!: Date;
+    original!: boolean;
+    posterPath!: string;
+    backdropPath!: string;
 }

@@ -1,45 +1,54 @@
 import type { MigrationParams } from 'umzug';
 import type { PostgresDialect } from '@sequelize/postgres';
-import { QueryTypes, type Sequelize  } from '@sequelize/core';
+import { type Sequelize  } from '@sequelize/core';
 
-import type Movie from '../Entities/Movie.js';
-import type Genre from '../Entities/Genre.js';
+import fetch from 'node-fetch';
+
+const MOVIEDB_BASE_URL = 'https://api.themoviedb.org';
 
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
-    await sequelize.queryInterface.bulkInsert('movies', [
-        {
-            title: 'Filme A',
-            synopsis: 'Sinopse do Filme A',
-            rating: 10.0,
-            releaseDate: new Date('12/05/2023')
-        },
-        {
-            title: 'Filme B',
-            synopsis: 'Sinopse do Filme B',
-            rating: 10.0,
-            releaseDate: new Date('05/03/2020')
+    const originalsResponse = await fetch(`${MOVIEDB_BASE_URL}/3/discover/tv?api_key=${process.env.MOVIEDB_API_KEY}&language=pt-br&with_networks=213`);
+    const originals = await originalsResponse.json() as any;
+
+    await sequelize.queryInterface.bulkInsert('movies', originals.results.map((entry: any) => {
+        return {
+            title: entry.name,
+            synopsis: entry.overview,
+            rating: entry.vote_average,
+            releaseDate: new Date(entry.first_air_date),
+            posterPath: `https://image.tmdb.org/t/p/w500${entry.poster_path}`,
+            backdropPath: `https://image.tmdb.org/t/p/w1280${entry.backdrop_path}`,
+            popularity: entry.popularity,
+            original: true
         }
-    ]);
+    }));
 
-    const movies = [
-        await sequelize.query('SELECT id FROM movies WHERE title = :title', { replacements: { title: 'Filme A' }, type: QueryTypes.SELECT }) as Movie[],
-        await sequelize.query('SELECT id FROM movies WHERE title = :title', { replacements: { title: 'Filme B' }, type: QueryTypes.SELECT }) as Movie[]
-    ];
+    const nonOriginalsResponse = await Promise.all([
+        fetch(`${MOVIEDB_BASE_URL}/3/discover/tv?api_key=${process.env.MOVIEDB_API_KEY}&language=pt-br&page=1`),
+        fetch(`${MOVIEDB_BASE_URL}/3/discover/tv?api_key=${process.env.MOVIEDB_API_KEY}&language=pt-br&page=2`),
+        fetch(`${MOVIEDB_BASE_URL}/3/discover/tv?api_key=${process.env.MOVIEDB_API_KEY}&language=pt-br&page=3`),
+    ])
 
-    {
-        const genres = await sequelize.query('SELECT id FROM genres WHERE name = :name', { replacements: { name: 'Comedy' }, type: QueryTypes.SELECT }) as Genre[];
-        await sequelize.queryInterface.bulkInsert('movie_genres', genres.map(genre => { return { movieId: movies.flat()[0]!.id, genreId: genre.id } }));
-    }
-    {
-        let genres = await Promise.all(['Adventure', 'Fantasy', 'Comedy'].map(async genre => {
-            return sequelize.query('SELECT id FROM genres WHERE name = :name', { replacements: { name: genre }, type: QueryTypes.SELECT }) as Promise<Genre[]>
-        }));
+    const nonOriginals = await Promise.all(nonOriginalsResponse.map(response => response.json())) as any[];
 
-        await sequelize.queryInterface.bulkInsert('movie_genres', genres.flat().map(genre => {
-            return { movieId: movies.flat()[1]!.id, genreId: genre.id }
-        }));
-    }
+    await sequelize.queryInterface.bulkInsert('movies',
+        nonOriginals
+            .map((entry: any) => entry.results).flat()
+            .filter((entry: any) => !originals.results.find((original: any) => original.name == entry.name))
+            .map((entry: any) => {
+                return {
+                    title: entry.name,
+                    synopsis: entry.overview,
+                    rating: entry.vote_average,
+                    releaseDate: new Date(entry.first_air_date),
+                    posterPath: `https://image.tmdb.org/t/p/w500${entry.poster_path}`,
+                    backdropPath: `https://image.tmdb.org/t/p/w1280${entry.backdrop_path}`,
+                    popularity: entry.popularity,
+                    original: false
+                };
+            })
+    );
 }
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)

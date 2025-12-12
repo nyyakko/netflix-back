@@ -27,16 +27,32 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
             allowNull: false,
         },
         synopsis: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING({ length: 1024 }),
             allowNull: false,
         },
         rating: {
             type: DataTypes.DOUBLE,
             allowNull: false
         },
+        popularity: {
+            type: DataTypes.DOUBLE,
+            allowNull: false
+        },
         releaseDate: {
             type: DataTypes.DATE,
             allowNull: false,
+        },
+        original: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        posterPath: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        backdropPath: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
     });
 }

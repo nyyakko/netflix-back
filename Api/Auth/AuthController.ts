@@ -4,7 +4,7 @@ import * as AuthService from './AuthService.js';
 
 export async function signIn(request: Request, response: Response)
 {
-    response.cookie('authorization', await AuthService.signIn(request.body), { maxAge: 900000, httpOnly: true, sameSite: true  });
+    response.cookie('authorization', await AuthService.signIn(request.body), { maxAge: parseInt(process.env.JWT_EXPIRES_IN!), httpOnly: true, sameSite: true  });
     response.send();
 }
 

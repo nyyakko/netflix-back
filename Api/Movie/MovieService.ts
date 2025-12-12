@@ -5,13 +5,13 @@ import MovieResponse from './Contracts/Responses/MovieResponse.js';
 import MovieAlreadyExistsException from './Exceptions/MovieAlreadyExistsException.js';
 import MovieNotFoundException from './Exceptions/MovieNotFoundException.js';
 
-export async function save({ title, synopsis, rating, genres, releaseDate }: MovieRequest): Promise<MovieResponse>
+export async function save({ title, synopsis, rating, popularity, genres, releaseDate, original, posterPath, backdropPath }: MovieRequest): Promise<MovieResponse>
 {
     if (await Movie.findOne({ where: { title }})) {
         throw new MovieAlreadyExistsException();
     }
 
-    const movie = await Movie.create({ title, synopsis, rating, releaseDate });
+    const movie = await Movie.create({ title, synopsis, rating, popularity, releaseDate, original, posterPath, backdropPath });
     movie.setGenres(genres);
 
     return MovieResponse.fromEntity(movie!);

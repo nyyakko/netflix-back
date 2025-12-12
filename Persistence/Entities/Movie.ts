@@ -21,7 +21,7 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
     @NotNull
     declare title: string;
 
-    @Attribute(DataTypes.STRING)
+    @Attribute(DataTypes.STRING({ length: 1024 }))
     @NotNull
     declare synopsis: string;
 
@@ -29,9 +29,25 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
     @NotNull
     declare rating: number;
 
+    @Attribute(DataTypes.DOUBLE)
+    @NotNull
+    declare popularity: number;
+
     @Attribute(DataTypes.DATE)
     @NotNull
     declare releaseDate: Date;
+
+    @Attribute(DataTypes.BOOLEAN)
+    @NotNull
+    declare original: boolean;
+
+    @Attribute(DataTypes.STRING)
+    @NotNull
+    declare posterPath: string;
+
+    @Attribute(DataTypes.STRING)
+    @NotNull
+    declare backdropPath: string;
 
     @BelongsToMany(() => Genre, { through: 'movie_genres' })
     declare genres?: NonAttribute<Genre[]>;
