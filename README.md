@@ -19,9 +19,9 @@ docker compose up
 Antes de mais nada, crie um arquivo `.env` na raiz do projeto com a seguinte estrutura:
 
 ```sh
-PORT=
+PORT=3000
 
-CORS_ORIGIN=
+CORS_ORIGIN=http://localhost:5173
 
 POSTGRES_DB=
 POSTGRES_USER=
@@ -29,16 +29,17 @@ POSTGRES_PASSWORD=
 POSTGRES_HOST=
 POSTGRES_PORT=
 
-JWT_SECRET=
-# Tempo de expiração em segundos
-JWT_EXPIRES_IN=
+MOVIEDB_API_KEY=
 
-ADMIN_USERNAME=
-ADMIN_EMAIL=
-ADMIN_PASSWORD=
+JWT_SECRET=
+JWT_EXPIRES_IN=86400000
+
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@localhost
+ADMIN_PASSWORD=admin
 ```
 
-lembre-se de atribuir valores válidos em cada campo.
+lembre-se de atribuir valores válidos em cada campo que esteja faltando.
 
 ### Configurando o banco
 
