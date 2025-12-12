@@ -47,7 +47,7 @@ O projeto é baseado em PostgreSQL. Certifique-se de tê-lo instalado em sua
 máquina, para então executar o seguinte comando:
 
 ```bash
-npm i && npm run migrator:up
+npm i && npm run tsc && npm run migrator:up
 ```
 
 ### Executando
