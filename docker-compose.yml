@@ -1,19 +1,33 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: netflix_db
+    container_name: netflix_database
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: netflix
     volumes:
-      - backend_data:/var/lib/postgresql
+      - netflix_data:/var/lib/postgresql
     networks:
-      - backend_net
+      - netflix_net
+
+  postgres_ui:
+    image: sosedoff/pgweb:latest
+    container_name: netflix_database_ui
+    environment:
+      - PGWEB_DATABASE_URL=postgres://postgres:postgres@postgres:5432/netflix?sslmode=disable
+    ports:
+      - "8081:8081"
+    links:
+      - postgres:postgres
+    depends_on:
+      - postgres
+    networks:
+      - netflix_net
 
   node:
     image: node:latest
-    container_name: netflix_rest
+    container_name: netflix_rest_api
     working_dir: /usr/src/app
     volumes:
       - .:/usr/src/app
@@ -39,14 +53,14 @@ services:
     depends_on:
       - postgres
     networks:
-      - backend_net
+      - netflix_net
     ports:
       - "3000:3000"
     command:
       sh -c "npm install && npm run tsc && npm run migrator:up && npm run dev"
 
 volumes:
-  backend_data:
+  netflix_data:
 
 networks:
-  backend_net:
+  netflix_net:
