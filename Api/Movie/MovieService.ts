@@ -27,7 +27,7 @@ export async function get(page: number, limit: number): Promise<MovieResponse[]>
     const { rows } = await Movie.findAndCountAll({
         limit: limit,
         offset: (page-1) * limit,
-        order: [['createdAt', 'DESC']]
+        order: [['id', 'ASC']]
     });
 
     return await Promise.all(rows.map(MovieResponse.fromEntity));

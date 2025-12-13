@@ -9,9 +9,12 @@ const MOVIEDB_BASE_URL = 'https://api.themoviedb.org';
 export async function up({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
 {
     const originalsResponse = await fetch(`${MOVIEDB_BASE_URL}/3/discover/tv?api_key=${process.env.MOVIEDB_API_KEY}&language=pt-br&with_networks=213`);
+
     const originals = await originalsResponse.json() as any;
+    let originalsGenres: number[][] = [];
 
     await sequelize.queryInterface.bulkInsert('movies', originals.results.map((entry: any) => {
+        originalsGenres.push(entry.genre_ids);
         return {
             title: entry.name,
             synopsis: entry.overview,
@@ -24,6 +27,12 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
         }
     }));
 
+    for (let i = 0; i < originalsGenres.length; i += 1) {
+        await sequelize.queryInterface.bulkInsert('movie_genres', originalsGenres[i]!.map(genre => {
+            return { movieId: i+1, genreId: genre }
+        }));
+    }
+
     const nonOriginalsResponse = await Promise.all([
         fetch(`${MOVIEDB_BASE_URL}/3/discover/tv?api_key=${process.env.MOVIEDB_API_KEY}&language=pt-br&page=1`),
         fetch(`${MOVIEDB_BASE_URL}/3/discover/tv?api_key=${process.env.MOVIEDB_API_KEY}&language=pt-br&page=2`),
@@ -31,12 +40,14 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
     ])
 
     const nonOriginals = await Promise.all(nonOriginalsResponse.map(response => response.json())) as any[];
+    let nonOriginalsGenres: number[][] = [];
 
     await sequelize.queryInterface.bulkInsert('movies',
         nonOriginals
             .map((entry: any) => entry.results).flat()
             .filter((entry: any) => !originals.results.find((original: any) => original.name == entry.name))
             .map((entry: any) => {
+                nonOriginalsGenres.push(entry.genre_ids);
                 return {
                     title: entry.name,
                     synopsis: entry.overview,
@@ -49,6 +60,12 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
                 };
             })
     );
+
+    for (let i = 0; i < nonOriginalsGenres.length; i += 1) {
+        await sequelize.queryInterface.bulkInsert('movie_genres', nonOriginalsGenres[i]!.map(genre => {
+            return { movieId: i+1, genreId: genre }
+        }));
+    }
 }
 
 export async function down({ context: sequelize }: MigrationParams<Sequelize<PostgresDialect>>)
