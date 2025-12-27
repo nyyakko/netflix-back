@@ -1,5 +1,6 @@
 import { DataTypes, Model, type NonAttribute, type CreationOptional, type InferAttributes, type InferCreationAttributes } from '@sequelize/core';
 import { Attribute, PrimaryKey, AutoIncrement, NotNull, Table, BelongsToMany } from '@sequelize/core/decorators-legacy';
+import type { BelongsToManyGetAssociationsMixin, BelongsToManySetAssociationsMixin } from 'sequelize';
 
 import Movie from './Movie.js';
 
@@ -11,10 +12,7 @@ export default class Genre extends Model<InferAttributes<Genre>, InferCreationAt
     @AutoIncrement
     declare id: CreationOptional<number>;
 
-    @Attribute(DataTypes.DATE)
     declare createdAt: CreationOptional<Date>;
-
-    @Attribute(DataTypes.DATE)
     declare updatedAt: CreationOptional<Date>;
 
     @Attribute(DataTypes.STRING)
@@ -22,5 +20,7 @@ export default class Genre extends Model<InferAttributes<Genre>, InferCreationAt
     declare name: string;
 
     @BelongsToMany(() => Movie, { through: 'movie_genres' })
-    declare movies?: NonAttribute<Genre[]>;
+    declare movies?: NonAttribute<Movie[]>;
+    declare setMovies: BelongsToManySetAssociationsMixin<Movie, Movie['id']>;
+    declare getMovies: BelongsToManyGetAssociationsMixin<Movie>;
 }

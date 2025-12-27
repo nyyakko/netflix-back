@@ -5,7 +5,7 @@ export default class MovieResponse
 {
     id!: number;
     title!: string;
-    releaseDate!: Date;
+    releaseDate: Date | undefined;
     synopsis!: string;
     rating!: number;
     popularity!: number;

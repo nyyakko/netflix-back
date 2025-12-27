@@ -11,10 +11,7 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
     @AutoIncrement
     declare id: CreationOptional<number>;
 
-    @Attribute(DataTypes.DATE)
     declare createdAt: CreationOptional<Date>;
-
-    @Attribute(DataTypes.DATE)
     declare updatedAt: CreationOptional<Date>;
 
     @Attribute(DataTypes.STRING)
@@ -34,8 +31,7 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
     declare popularity: number;
 
     @Attribute(DataTypes.DATE)
-    @NotNull
-    declare releaseDate: Date;
+    declare releaseDate?: Date;
 
     @Attribute(DataTypes.BOOLEAN)
     @NotNull
@@ -51,7 +47,6 @@ export default class Movie extends Model<InferAttributes<Movie>, InferCreationAt
 
     @BelongsToMany(() => Genre, { through: 'movie_genres' })
     declare genres?: NonAttribute<Genre[]>;
-
     declare setGenres: BelongsToManySetAssociationsMixin<Genre, Genre['id']>;
     declare getGenres: BelongsToManyGetAssociationsMixin<Genre>;
 }

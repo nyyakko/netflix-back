@@ -40,7 +40,7 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
         },
         releaseDate: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         original: {
             type: DataTypes.BOOLEAN,
