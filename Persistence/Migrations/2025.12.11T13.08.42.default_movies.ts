@@ -42,7 +42,11 @@ export async function up({ context: sequelize }: MigrationParams<Sequelize<Postg
     await sequelize.queryInterface.bulkInsert('movies',
         nonOriginals
             .map((entry: any) => entry.results).flat()
-            .filter((entry: any) => !originals.map((entry: any) => entry.results).flat().find((original: any) => original.name == entry.name))
+            .filter((entry: any) =>
+                    !originals
+                        .map((entry: any) => entry.results).flat()
+                        .find((original: any) => original.name == entry.name)
+            )
             .map((entry: any) => {
                 return {
                     title: entry.name,
